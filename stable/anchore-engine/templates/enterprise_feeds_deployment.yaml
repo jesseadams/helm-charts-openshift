@@ -99,6 +99,10 @@ spec:
           mountPath: /home/anchore/certs/
           readOnly: true
         {{- end }}
+        - mountPath: /var/log/anchore
+          name: logs
+        - mountPath: /var/run
+          name: run
         livenessProbe:
           httpGet:
             path: /health
@@ -125,6 +129,10 @@ spec:
         resources:
           {{ toYaml .Values.anchoreEnterpriseFeeds.resources | nindent 10 }}
       volumes:
+        - emptyDir: {}
+          name: logs
+        - emptyDir: {}
+          name: run
         - name: config-volume
           configMap:
             name: {{ template "anchore-engine.enterprise-feeds.fullname" . }}
