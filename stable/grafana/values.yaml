@@ -58,11 +58,6 @@ testFramework:
   tag: "0.4.0"
   securityContext: {}
 
-securityContext:
-  runAsUser: 472
-  fsGroup: 472
-
-
 extraConfigmapMounts: []
   # - name: certs-configmap
   #   mountPath: /etc/grafana/ssl/
